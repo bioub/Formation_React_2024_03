@@ -1,6 +1,6 @@
-function TodoInputValue() {
+function TodoInputValue({ todo = {} }) {
   return (
-    <input className="TodoInputValue" value="ABC" />
+    <input className="TodoInputValue" value={todo.title} />
   );
 }
 

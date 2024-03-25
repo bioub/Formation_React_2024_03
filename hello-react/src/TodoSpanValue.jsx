@@ -1,7 +1,7 @@
-function TodoSpanValue() {
+function TodoSpanValue({ todo = {} }) {
   return (
     <span className="TodoSpanValue">
-      ABC
+      {todo.title}
     </span>
   );
 }

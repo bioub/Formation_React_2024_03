@@ -2,6 +2,13 @@ import "./App.css";
 import TodoItem from "./TodoItem";
 
 function App() {
+  const todos = [
+    { id: 123, title: 'ABC', completed: false },
+    { id: 456, title: 'DEF', completed: true },
+    { id: 789, title: 'XYZ', completed: false },
+  ];
+  const editingId = 789;
+
   return (
     <>
       <form className="todos-form">
@@ -10,9 +17,7 @@ function App() {
         <button>+</button>
       </form>
       <div className="todos-container">
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {todos.map((todo) => <TodoItem key={todo.id} todo={todo} isEditing={editingId === todo.id} />)}
       </div>
     </>
   );
