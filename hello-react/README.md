@@ -115,11 +115,11 @@ Créer dans `App` les 2 variables suivantes :
 
 ```
 const todos = [
-  { _id: 'abcdef1234', title: 'ABC', completed: false },
-  { _id: 'dngudtub45', title: 'DEF', completed: true },
-  { _id: 'dfgfg35335', title: 'XYZ', completed: false },
+  { id: 123, title: 'ABC', completed: false },
+  { id: 456, title: 'DEF', completed: true },
+  { id: 789, title: 'XYZ', completed: false },
 ];
-const editingId = 'dfgfg35335';
+const editingId = 789;
 ```
 
 Transformer le JSX de `App` pour qu'il dépende de ces variables
