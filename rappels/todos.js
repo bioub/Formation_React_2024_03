@@ -3,7 +3,7 @@
  * @param {string} title 
  * @returns {HTMLSpanElement}
  */
-function createSpanEl(title) {
+export function createSpanEl(title) {
   const spanEl = document.createElement('span');
   spanEl.className = 'todos-title';
   spanEl.innerText = title;
@@ -16,7 +16,7 @@ function createSpanEl(title) {
  * @param {string} title 
  * @returns {HTMLInputElement}
  */
-function createInputEl(title) {
+export function createInputEl(title) {
   const inputEl = document.createElement('input');
   inputEl.className = 'todos-title-input';
   inputEl.value = title;
@@ -33,7 +33,7 @@ function createInputEl(title) {
  * @param {boolean} todo.completed 
  * @returns {HTMLDivElement}
  */
-function createTodoRow(todo) {
+export function createTodoRow(todo) {
   const rowEl = document.createElement('div');
   rowEl.className = "todos-item";
   rowEl.dataset.todoId = todo.id;

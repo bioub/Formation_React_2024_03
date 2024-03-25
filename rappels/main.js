@@ -1,3 +1,5 @@
+import { createInputEl, createSpanEl, createTodoRow } from './todos.js'
+
 /** @type {HTMLFormElement} */
 const formEl = document.querySelector('.todos-form');
 
