@@ -9,9 +9,15 @@ function App() {
   ];
   const editingId = 789;
 
+  /** @param {import('react').FormEvent<HTMLFormElement>} event  */
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log('submit', event);
+  }
+
   return (
     <>
-      <form className="todos-form">
+      <form className="todos-form" onSubmit={handleSubmit}>
         <input type="checkbox" className="todos-toggle-checked" />
         <input type="text" className="todos-new-input" />
         <button>+</button>
