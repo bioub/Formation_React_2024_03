@@ -130,7 +130,7 @@ Modifier `App` de sorte à ce que `todos` soit défini dans un state (avec `useS
 
 Ajouter un nouveau state `newTodo` (avec en valeur par défaut `'ABC'`) et passer `newTodo` à la propriété `value` de `<input type="text" className="todos-new-input" />`
 
-Ecouter ensuite avec `onChange` le changement de valeur dans le champ et stocker dans le state `newTodo` (avec `setNewTodo`) la valeur venant de `event.target.value` (cf slide 82)
+Ecouter ensuite avec `onChange` le changement de valeur dans le champ et stocker dans le state `newTodo` (avec `setNewTodo`) la valeur venant de `event.target.value` (cf slide 143)
 
 Au submit du formulaire (`onSubmit`), appeler `event.preventDefault()` pour désactiver le comportement par défaut du navigateur (qui nous emmènerait vers la page de résultat).
 
