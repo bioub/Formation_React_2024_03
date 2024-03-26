@@ -151,3 +151,19 @@ Ecouter le click ou le change de la checkbox :
 `<input type="checkbox" className="todos-toggle-checked" />`
 
 Au click cocher/décocher toutes les checkboxes de `TodoItem`.
+
+## Effects
+
+Créer la fonction suivante dans App :
+
+```
+async function fetchTodos(): Promise<Todo[]> {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const data = await res.json();
+  return data
+    .slice(0, 20);
+}
+```
+
+Appeler cette fonction dans un effet au chargement du composant et stocker
+les résultats dans le state `todos`
