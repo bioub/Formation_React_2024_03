@@ -48,3 +48,10 @@ store.dispatch({ type: "INCREMENT_LIKES" });
 store.dispatch({ type: "INCREMENT_LIKES" });
 store.dispatch({ type: "INCREMENT_LIKES" });
 store.dispatch({ type: "UPDATE_NAME", newName: "Toto" });
+
+
+
+store.dispatch({ type: "UPDATE_NEW_TODO", payload: 'ABCD' });
+store.dispatch({ type: "UPDATE_NEW_TODO", payload: 'ABCDE' });
+
+store.dispatch({ type: "ADD_TODO", payload: { id: Math.random(), title: 'XYZ', completed: false } });
