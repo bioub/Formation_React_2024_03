@@ -1,14 +1,19 @@
-import { legacy_createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import {
   addTodo,
   incrementLikes,
   updateName,
   updateNewTodo,
 } from "./actions.js";
-import { reducer } from "./reducers.js";
+import { homeReducer, todosReducer } from "./reducers.js";
 import { itemsSelector, likesSelector, nameSelector, newTodoSelector, todosCompletedSelector } from "./selectors.js";
 
-const store = legacy_createStore(reducer);
+const store = configureStore({
+  reducer: {
+    home: homeReducer,
+    todos: todosReducer,
+  }
+});
 
 store.subscribe(() => {
   console.log("likes", likesSelector(store.getState()));

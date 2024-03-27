@@ -14,7 +14,6 @@ export function itemsSelector(state) {
     return state.todos.items;
 }
 
-
 export function todosCompletedSelector(state) {
     const items = itemsSelector(state);
 
