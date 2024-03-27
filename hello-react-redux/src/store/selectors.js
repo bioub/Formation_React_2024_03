@@ -10,6 +10,10 @@ export function newTodoSelector(state) {
     return state.todos.newTodo;
 }
 
+export function loadingSelector(state) {
+    return state.todos.loading;
+}
+
 export function itemsSelector(state) {
     return state.todos.items;
 }

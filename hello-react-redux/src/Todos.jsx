@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import Clock from "./Clock";
+import { useDispatch, useSelector } from "react-redux";
+import { itemsSelector, loadingSelector, newTodoSelector } from "./store/selectors";
+import { addTodo, deleteTodo, editTodo, requestTodos, toggleTodosComplete, updateNewTodo } from "./store/actions";
 
-async function fetchTodos() {
-    const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data = await res.json();
-    return data.slice(0, 20);
-  }
+
   
   // function fetchTodosOld() {
   //   return fetch("https://jsonplaceholder.typicode.com/todos")
@@ -28,17 +27,19 @@ function Todos() {
     // au moment ou on saisi dans le champs du form (updateNewTodo)
     // Bonus : comment gérer la suppression ?
 
+    const dispatch = useDispatch()
+    const loading = useSelector(loadingSelector);
+    const todos = useSelector(itemsSelector);
+    // const [todos, setTodos] = useState([]);
+    const newTodo = useSelector(newTodoSelector);
+    // const [newTodo, setNewTodo] = useState("ABC");
 
-    const [todos, setTodos] = useState([]);
-    const [newTodo, setNewTodo] = useState("ABC");
     const [showClock, setShowClock] = useState(true);
     const [editingId, setEditingId] = useState(-1);
   
-    // useEffect(() => {
-    //   fetchTodos().then((todos) => {
-    //     setTodos(todos);
-    //   });
-    // }, []);
+    useEffect(() => {
+      dispatch(requestTodos());
+    }, [dispatch]);
   
     useEffect(() => {
       function handleWindowClick(event) {
@@ -55,37 +56,20 @@ function Todos() {
     /** @param {import('react').FormEvent<HTMLFormElement>} event  */
     function handleSubmit(event) {
       event.preventDefault();
-      setTodos([
-        { id: Math.random(), title: newTodo, completed: false },
-        ...todos,
-      ]);
-      setNewTodo("");
+      dispatch(addTodo(newTodo));
     }
   
     /** @param {import('react').ChangeEvent<HTMLInputElement>} event  */
     function handleToggleChange(event) {
-      setTodos(
-        // on créé un nouveau tableau todos, qui contient soit :
-        // les todos actuelles si completed correspond déjà à la valeur de la checkbox
-        // des nouvelles todos sinon
-        todos.map((todo) =>
-          todo.completed === event.target.checked
-            ? todo
-            : { ...todo, completed: event.target.checked }
-        )
-      );
+      dispatch(toggleTodosComplete(event.target.checked));
     }
   
     function handleTodoDelete(todoToDelete) {
-      setTodos(todos.filter((todo) => todo.id !== todoToDelete.id));
+      dispatch(deleteTodo(todoToDelete));
     }
   
     function handleTodoEdit(newTodoWithSameId) {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === newTodoWithSameId.id ? newTodoWithSameId : todo
-        )
-      );
+      dispatch(editTodo(newTodoWithSameId));
     }
   
     return (
@@ -100,12 +84,12 @@ function Todos() {
             type="text"
             className="todos-new-input"
             value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
+            onChange={(e) => dispatch(updateNewTodo(e.target.value))}
           />
           <button>+</button>
         </form>
         <div className="todos-container">
-          {todos.map((todo) => (
+          {loading ? <p>Loading...</p> : todos.map((todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}
