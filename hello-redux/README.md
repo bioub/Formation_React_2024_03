@@ -32,3 +32,11 @@ Dans `02-bonnes-pratiques/index.ts` transformer dans le `.subscribe` le `console
 ```
 console.log('todos', todosCompletedSelector(store.getState()));
 ```
+
+## Redux Toolkit
+
+Dans `03-redux-toolkit/actions.js` générer `updateNewTodo` avec `createAction`
+
+Dans `03-redux-toolkit/reducer.js` utiliser `createReducer` pour simplifier le code de `todosReducer` en l'écrivant de façon muable et laisser Immer faire la transformation (`state.items.push(...)`)
+
+Supprimer le fichier `03-redux-toolkit/constants.js`
