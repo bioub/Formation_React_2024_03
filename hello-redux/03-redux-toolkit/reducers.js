@@ -1,11 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { incrementLikes, updateName } from "./actions.js";
-import {
-  ADD_TODO,
-  INCREMENT_LIKES,
-  UPDATE_NAME,
-  UPDATE_NEW_TODO,
-} from "./constants.js";
+import { addTodo, incrementLikes, updateNewTodo, updateName } from "./actions.js";
 
 const initialState = {
   home: {
@@ -22,23 +16,6 @@ const initialState = {
   },
 };
 
-// export function homeReducer(state = initialState.home, action) {
-//   switch (action.type) {
-//     case incrementLikes.type:
-//       return {
-//         ...state,
-//         likes: state.likes + 1,
-//       };
-//     case UPDATE_NAME:
-//       return {
-//         ...state,
-//         name: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// }
-
 export const homeReducer = createReducer(initialState.home, (builder) => {
   builder
     .addCase(incrementLikes, (state, action) => {
@@ -49,19 +26,12 @@ export const homeReducer = createReducer(initialState.home, (builder) => {
     });
 });
 
-export function todosReducer(state = initialState.todos, action) {
-  switch (action.type) {
-    case UPDATE_NEW_TODO:
-      return {
-        ...state,
-        newTodo: action.payload,
-      };
-    case ADD_TODO:
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
-    default:
-      return state;
-  }
-}
+export const todosReducer = createReducer(initialState.todos, (builder) => {
+  builder
+    .addCase(updateNewTodo, (state, action) => {
+      state.newTodo = action.payload;
+    })
+    .addCase(addTodo, (state, action) => {
+      state.items.push(action.payload)
+    });
+});
