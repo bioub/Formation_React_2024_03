@@ -21,17 +21,33 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         home: {
-            ...state.home,
-            likes: state.home.likes + 1,
-        }
+          ...state.home,
+          likes: state.home.likes + 1,
+        },
       };
     case "UPDATE_NAME":
       return {
         ...state,
         home: {
-            ...state.home,
-            name: action.newName,
-        }
+          ...state.home,
+          name: action.newName,
+        },
+      };
+    case "UPDATE_NEW_TODO":
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          newTodo: action.payload,
+        },
+      };
+    case "ADD_TODO":
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          items: [...state.todos.items, action.payload],
+        },
       };
     default:
       return state;
@@ -49,9 +65,10 @@ store.dispatch({ type: "INCREMENT_LIKES" });
 store.dispatch({ type: "INCREMENT_LIKES" });
 store.dispatch({ type: "UPDATE_NAME", newName: "Toto" });
 
+store.dispatch({ type: "UPDATE_NEW_TODO", payload: "ABCD" });
+store.dispatch({ type: "UPDATE_NEW_TODO", payload: "ABCDE" });
 
-
-store.dispatch({ type: "UPDATE_NEW_TODO", payload: 'ABCD' });
-store.dispatch({ type: "UPDATE_NEW_TODO", payload: 'ABCDE' });
-
-store.dispatch({ type: "ADD_TODO", payload: { id: Math.random(), title: 'XYZ', completed: false } });
+store.dispatch({
+  type: "ADD_TODO",
+  payload: { id: Math.random(), title: "XYZ", completed: false },
+});
