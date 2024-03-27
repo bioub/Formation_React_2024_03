@@ -1,4 +1,7 @@
+import styles from './Select.module.css';
+
 import { useEffect, useRef, useState } from "react";
+
 
 function Select({ items = [], value = "", onValueChange = () => {} }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,12 +22,12 @@ function Select({ items = [], value = "", onValueChange = () => {} }) {
   return (
     <div
       ref={rootRef}
-      className="Select"
+      className={styles.Select}
       onClick={() => setMenuOpen(!menuOpen)}
     >
       <div>{value}</div>
       {menuOpen && (
-        <div>
+        <div className={styles.menu}>
           {items.map((item) => (
             <div key={item} onClick={() => onValueChange(item)}>
               {item}

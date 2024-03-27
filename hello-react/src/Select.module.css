@@ -1,0 +1,8 @@
+.Select {
+    --border-color: grey;
+ 
+}
+
+.menu {
+    border: 1px solid var(--border-color, black);
+}
